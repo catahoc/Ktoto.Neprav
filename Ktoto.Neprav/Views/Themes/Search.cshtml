@@ -1,0 +1,14 @@
+﻿@model Ktoto.Neprav.Models.FoundThemes
+
+@{
+    ViewBag.Title = string.Format("Найденные темы по запросу \"{0}\"", Model.SearchText);
+}
+
+<h2>@ViewBag.Title</h2>
+@foreach (var theme in Model.Found)
+{
+    @Html.ActionLink(theme.Name, "Index", "Theme", new
+        {
+            name = theme.Name
+        }, null)
+}

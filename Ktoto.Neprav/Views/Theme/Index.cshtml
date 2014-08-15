@@ -1,0 +1,34 @@
+﻿@model ThemeViewModel
+
+@{
+    ViewBag.Title = Model.Theme.Name;
+}
+
+<h2>@ViewBag.Title</h2>
+<div id="theme">
+    @foreach (var opinionModel in Model.ThemeOpinionViewModels)
+    {
+        <div class="opinion @opinionModel.Opinion">
+            <div>
+                <form action="@Url.Action("Comment")">
+                    <input type="hidden" name="Opinion" value="@opinionModel.Opinion"/>
+                    <input type="hidden" name="ThemeName" value="@Model.Theme.Name"/>
+                    <textarea name="Text"></textarea>
+                    <input type="submit" value="Оставить комментарий…"/>
+                </form>
+                @foreach (var comment in opinionModel.Comments)
+                {
+                    <div class="comment">
+                        <span class="author">
+                            @Html.ActionLink(comment.Author.Name, "Page", "Author", new {name = comment.Author.Name}, null)
+                            пишет:
+                        </span>
+                        <span class="body">
+                            @comment.Text
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

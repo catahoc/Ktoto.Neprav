@@ -1,0 +1,39 @@
+﻿#theme {
+    min-width: 100%;
+    table-layout: fixed;
+}
+
+.opinion {
+    float: left;
+    width: 33.3%;
+    min-height: 1200px;
+}
+
+.opinion div {
+    padding: 10px;
+}
+
+.opinion:nth-child(1) {
+    background-color: #dfa;
+}
+
+.opinion:nth-child(2) {
+    background-color: #ddd;
+}
+
+.opinion:nth-child(3) {
+    background-color: #fac;
+}
+
+.comment .author {
+    font-size: 12pt;
+    display: block;
+}
+
+.comment .body {
+    padding-left: 25px;
+}
+
+.comment {
+    border-bottom: 1px solid black;
+}
