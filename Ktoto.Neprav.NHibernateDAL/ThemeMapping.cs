@@ -3,11 +3,11 @@ using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav
 {
-    public class ThemeMapping: ClassMap<Theme>
+    public class ThemeMapping: SubclassMap<Theme>
     {
         public ThemeMapping()
         {
-            Id(_ => _.Id).AutoIncrement();
+			KeyColumn("ID");
 
             Map(_ => _.Name);
 

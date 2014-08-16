@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ktoto.Neprav.Domain", "Ktoto.Neprav.Domain\Ktoto.Neprav.Domain.csproj", "{0A80E460-ADB6-4DCD-9BBA-90BC2F8B3291}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ktoto.Neprav", "Ktoto.Neprav\Ktoto.Neprav.csproj", "{FA3CA10A-E900-4BFB-9038-FF674AB48C72}"

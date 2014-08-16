@@ -3,11 +3,11 @@ using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav
 {
-    public class CommentMapping: ClassMap<Comment>
+    public class CommentMapping: SubclassMap<Comment>
     {
         public CommentMapping()
         {
-            Id(_ => _.Id).AutoIncrement();
+			KeyColumn("ID");
 
             Map(_ => _.Opinion);
             Map(_ => _.Text);

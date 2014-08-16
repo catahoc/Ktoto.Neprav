@@ -36,7 +36,15 @@ namespace Ktoto.Neprav
 	    private static void BootstrapServices()
 	    {
 		    var cs = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+			
 		    var factory = NhDalFactory.Create(cs, WebConfig.ResetSchemata);
+		    if (WebConfig.ResetSchemata)
+		    {
+			    using (var dal = factory.Create())
+			    {
+				    SampleData.FillDal(dal);
+			    }
+		    }
 
 		    // global
 		    _container.RegisterInstance<IDalFactory>(factory);

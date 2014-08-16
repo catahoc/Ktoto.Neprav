@@ -1,13 +1,15 @@
-﻿namespace Ktoto.Neprav.Domain
-{
-    public class LikeTarget
-    {
-        
-    }
+﻿using System.Collections.Generic;
 
-    public class Like
+namespace Ktoto.Neprav.Domain
+{
+	public class LikeTarget
     {
-        public virtual Author Author { get; set; }
-        public virtual LikeTarget Target { get; set; }
-    }
+		public LikeTarget()
+		{
+			Likes = new List<Like>();
+		}
+
+		public virtual long Id { get; set; }
+		public virtual ICollection<Like> Likes { get; set; }
+	}
 }

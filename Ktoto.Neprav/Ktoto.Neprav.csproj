@@ -138,7 +138,6 @@
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\ThemeController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
-    <Compile Include="DAL\IncIdList.cs" />
     <Compile Include="DAL\R.cs" />
     <Compile Include="DAL\SampleData.cs" />
     <Compile Include="Global.asax.cs">

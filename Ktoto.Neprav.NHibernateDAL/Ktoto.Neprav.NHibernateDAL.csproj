@@ -52,6 +52,8 @@
     <Compile Include="AuthorMapping.cs" />
     <Compile Include="CommentMapping.cs" />
     <Compile Include="FluentExtensions.cs" />
+    <Compile Include="LikeMapping.cs" />
+    <Compile Include="LikeTargetMapping.cs" />
     <Compile Include="NhDalFactory.cs" />
     <Compile Include="NhDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

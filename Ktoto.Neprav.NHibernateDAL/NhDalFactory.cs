@@ -40,7 +40,7 @@ namespace Ktoto.Neprav
             return new NhDalFactory(sessionFactory);
         }
 
-        IDal IDalFactory.Create()
+        public IDal Create()
         {
             return new NhDal(_sessionFactory);
         }

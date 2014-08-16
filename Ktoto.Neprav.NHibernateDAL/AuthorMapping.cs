@@ -7,7 +7,7 @@ namespace Ktoto.Neprav
     {
         public AuthorMapping()
         {
-            Id(_ => _.Id).AutoIncrement();
+            Id(_ => _.Id).GeneratedBy.Identity();
 
             Map(_ => _.Sex);
             Map(_ => _.Name);

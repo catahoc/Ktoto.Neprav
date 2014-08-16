@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="HaveId.cs" />
+    <Compile Include="Like.cs" />
     <Compile Include="LikeTarget.cs" />
     <Compile Include="Markup\EnumStringAttribute.cs" />
     <Compile Include="Enum\Opinion.cs" />

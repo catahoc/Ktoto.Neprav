@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Ktoto.Neprav.Domain;
+﻿using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav.DAL
 {
