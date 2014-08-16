@@ -25,17 +25,21 @@ namespace Ktoto.Neprav
 		        .Dialect<MsSql2012Dialect>()
 		        .Driver<SqlClientDriver>()
 		        .ConnectionString(connectionString);
-            var cfg = Fluently.Configure()
-                    .Mappings(_ => _.FluentMappings.AddFromAssemblyOf<AuthorMapping>())
-                    .Database(dbConfig)
-                    .ExposeConfiguration(_ =>
-                        {
-	                        if (expose)
-	                        {
-								var export = new SchemaExport(_);
-								export.Execute(true, true, false);
-							}
-                        });
+			var cfg = Fluently.Configure()
+				.Mappings(_ => _.FluentMappings
+					.Add<AuthorMapping>()
+					.Add<LikeTargetMapping>()
+					.Add<ThemeMapping>()
+					.Add<CommentMapping>())
+				.Database(dbConfig)
+				.ExposeConfiguration(_ =>
+				{
+					if (expose)
+					{
+						var export = new SchemaExport(_);
+						export.Execute(true, true, false);
+					}
+				});
             var sessionFactory = cfg.BuildSessionFactory();
             return new NhDalFactory(sessionFactory);
         }

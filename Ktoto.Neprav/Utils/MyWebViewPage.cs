@@ -5,13 +5,15 @@ namespace Ktoto.Neprav.Utils
 {
     public abstract class MyWebViewPage<TModel> : WebViewPage<TModel>
     {
-        [Dependency]
         public IdentityInfo Identity { get; set; }
+
+		public string This { get; set; }
     }
 
     public abstract class MyWebViewPage : WebViewPage
     {
-        [Dependency]
         public IdentityInfo Identity { get; set; }
-    }
+
+		public string This { get; set; }
+	}
 }

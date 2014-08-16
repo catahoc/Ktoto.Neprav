@@ -23,7 +23,12 @@ namespace Ktoto.Neprav
             return _session.Query<T>();
         }
 
-        public void Attach<T>(T obj)
+	    public T Get<T>(object key)
+	    {
+		    return _session.Get<T>(key);
+	    }
+
+	    public void Attach<T>(T obj)
         {
             _session.Save(obj);
         }

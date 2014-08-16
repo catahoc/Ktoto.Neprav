@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="IDal.cs" />
     <Compile Include="IDalFactory.cs" />
+    <Compile Include="ManyToMany.cs" />
     <Compile Include="OneToMany.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

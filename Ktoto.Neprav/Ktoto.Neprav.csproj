@@ -132,7 +132,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
-    <Compile Include="Attributes\AuthActionFilter.cs" />
+    <Compile Include="Attributes\Auth.cs" />
+    <Content Include="Content\Like.css" />
+    <Compile Include="Controllers\LikesController.cs" />
     <Compile Include="WebConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
@@ -144,7 +146,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IdentityInfo.cs" />
-    <Compile Include="Images\CommentTheme.cs" />
+    <Compile Include="Models\CommentTheme.cs" />
     <Compile Include="Models\FoundThemes.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ThemeViewModel.cs" />
@@ -222,7 +224,11 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Like-hl.png" />
+    <Content Include="Images\Like.pdn" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Images\Like.png" />
+    <Content Include="Images\NotLike.png" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -269,6 +275,7 @@
     <Content Include="Views\Themes\Index.cshtml" />
     <Content Include="Views\Themes\Search.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="App_Code\Snippets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,7 +20,7 @@ namespace Ktoto.Neprav.Controllers
             _dal = dal;
         }
 
-        [AuthActionFilter(AuthRequiredOption.RequiresNotAuth)]
+        [Auth(AuthRequiredOption.RequiresNotAuth)]
         public ActionResult Login(LoginModel loginModel)
         {
             var users = _dal.Query<Author>().Where(_ => _.Name == loginModel.User).ToList();
@@ -44,7 +44,7 @@ namespace Ktoto.Neprav.Controllers
             }
         }
 
-        [AuthActionFilter(AuthRequiredOption.Required)]
+        [Auth(AuthRequiredOption.Required)]
         public ActionResult Logout(LogoutModel model)
         {
             AuthManager.Logout(Response);

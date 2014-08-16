@@ -1,10 +1,12 @@
-﻿@model ThemeViewModel
+﻿@using Ktoto.Neprav.Utils
+@model ThemeViewModel
 
 @{
     ViewBag.Title = Model.Theme.Name;
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>@ViewBag.Title @Snippets.Liking(Model.Theme, Identity, This)</h2>
+
 <div id="theme">
     @foreach (var opinionModel in Model.ThemeOpinionViewModels)
     {
@@ -12,7 +14,7 @@
             <div>
                 <form action="@Url.Action("Comment")">
                     <input type="hidden" name="Opinion" value="@opinionModel.Opinion"/>
-                    <input type="hidden" name="ThemeName" value="@Model.Theme.Name"/>
+                    <input type="hidden" name="ThemeId" value="@Model.Theme.Id"/>
                     <textarea name="Text"></textarea>
                     <input type="submit" value="Оставить комментарий…"/>
                 </form>
@@ -23,9 +25,10 @@
                             @Html.ActionLink(comment.Author.Name, "Page", "Author", new {name = comment.Author.Name}, null)
                             пишет:
                         </span>
-                        <span class="body">
-                            @comment.Text
-                        </span>
+	                    <span class="body">
+		                    @comment.Text
+	                    </span>
+						@Snippets.Liking(comment, Identity, This)
                     </div>
                 }
             </div>

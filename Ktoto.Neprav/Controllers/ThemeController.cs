@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using Ktoto.Neprav.Attributes;
 using Ktoto.Neprav.DAL;
 using Ktoto.Neprav.Domain;
-using Ktoto.Neprav.Images;
 using Ktoto.Neprav.Models;
 using Ktoto.Neprav.Utils;
 
@@ -23,9 +22,9 @@ namespace Ktoto.Neprav.Controllers
             _identity = identity;
         }
 
-        public ActionResult Index(string name)
+        public ActionResult Index(long themeId)
         {
-            var theme = _dal.Query<Theme>().Single(_ => _.Name == name);
+            var theme = _dal.Get<Theme>(themeId);
             var model =
                 new ThemeViewModel(
                     EnumHelpers.Enumerate<Opinion>()
@@ -37,10 +36,10 @@ namespace Ktoto.Neprav.Controllers
             return View(model);
         }
 
-        [AuthActionFilter(AuthRequiredOption.Required)]
+        [Auth(AuthRequiredOption.Required)]
         public ActionResult Comment(CommentTheme commentModel)
         {
-            var theme = _dal.Query<Theme>().Single(_ => _.Name == commentModel.ThemeName);
+            var theme = _dal.Get<Theme>(commentModel.ThemeId);
             var comment = new Comment
                 {
                     Text = commentModel.Text,
@@ -49,7 +48,7 @@ namespace Ktoto.Neprav.Controllers
 			R.Commented(_identity.Author, theme, comment);
             _dal.Attach(comment);
 
-            return RedirectToAction("Index", new {name = theme.Name});
+			return RedirectToAction("Index", new { themeId = theme.Id });
         }
     }
 }

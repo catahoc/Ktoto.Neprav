@@ -10,12 +10,12 @@ namespace Ktoto.Neprav.Attributes
         RequiresNotAuth
     }
 
-    public class AuthActionFilter: ActionFilterAttribute
+    public class Auth: ActionFilterAttribute
     {
         private readonly AuthRequiredOption _option;
         private readonly IdentityInfo _identity;
 
-        public AuthActionFilter(AuthRequiredOption option)
+        public Auth(AuthRequiredOption option)
         {
             _option = option;
             var resolver = DependencyResolver.Current;

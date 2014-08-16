@@ -8,6 +8,7 @@ namespace Ktoto.Neprav
 		public LikeTargetMapping()
 		{
 			Id(_ => _.Id).GeneratedBy.Identity();
+			HasManyToMany(_ => _.LikedAuthors);
 		}
 	}
 }

@@ -1,0 +1,23 @@
+﻿@using System.Web.Mvc
+@using Ktoto.Neprav
+@using Ktoto.Neprav.Domain
+
+@helper Liking(LikeTarget target, IdentityInfo identity, string backurl)
+{
+	var url = new UrlHelper(Context.Request.RequestContext);
+	<div class="liking">
+		@if (!identity.IsAuthorized)
+		{
+			<img class="like-just-see" src="@url.Content("~/Images/Like.png")"/>
+		}
+		else if (identity.Author.LikedTargets.Contains(target))
+		{
+			<a class="dislike" href="@url.Action("Dislike", "Likes", new {targetId = target.Id, backurl})"></a>
+		}
+		else
+		{
+			<a class="like" href="@url.Action("Like", "Likes", new {targetId = target.Id, backurl})"></a>
+		}
+		<span class="like-count">@target.LikedAuthors.Count</span>
+	</div>
+}

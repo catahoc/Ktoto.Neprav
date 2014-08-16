@@ -6,10 +6,10 @@ namespace Ktoto.Neprav.Domain
     {
 		public LikeTarget()
 		{
-			Likes = new List<Like>();
+			LikedAuthors = new List<Author>();
 		}
 
 		public virtual long Id { get; set; }
-		public virtual ICollection<Like> Likes { get; set; }
+		public virtual ICollection<Author> LikedAuthors { get; set; }
 	}
 }

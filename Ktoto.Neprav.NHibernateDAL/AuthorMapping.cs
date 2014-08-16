@@ -14,6 +14,8 @@ namespace Ktoto.Neprav
 
             HasMany(_ => _.Themes);
             HasMany(_ => _.Comments);
-        }
+
+			HasManyToMany(_ => _.LikedTargets);
+		}
     }
 }

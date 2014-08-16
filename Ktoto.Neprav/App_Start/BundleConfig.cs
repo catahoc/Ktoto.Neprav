@@ -23,7 +23,10 @@ namespace Ktoto.Neprav
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css").Include("~/Content/Theme.css"));
+	        bundles.Add(new StyleBundle("~/Content/css")
+		        .Include("~/Content/Site.css")
+		        .Include("~/Content/Like.css")
+		        .Include("~/Content/Theme.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

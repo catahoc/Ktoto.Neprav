@@ -8,7 +8,7 @@ namespace Ktoto.Neprav.Domain
         {
             Themes = new List<Theme>();
             Comments = new List<Comment>();
-			Likes = new List<Like>();
+			LikedTargets = new List<LikeTarget>();
         }
 
 		public virtual long Id { get; set; }
@@ -16,6 +16,6 @@ namespace Ktoto.Neprav.Domain
         public virtual Sex Sex { get; set; }
         public virtual ICollection<Theme> Themes { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Like> Likes { get; set; }
+		public virtual ICollection<LikeTarget> LikedTargets { get; set; }
     }
 }
