@@ -1,7 +1,12 @@
 ﻿namespace Ktoto.Neprav
 {
-	public class WebConfig
+	public static class WebConfig
 	{
-		public bool Expose { get; set; } 
+		static WebConfig()
+		{
+			ResetSchemata = false;
+		}
+
+		public static bool ResetSchemata { get; private set; } 
 	}
 }
