@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Web.Mvc;
 using Ktoto.Neprav.DAL;
 using Ktoto.Neprav.Domain;
@@ -9,16 +10,16 @@ namespace Ktoto.Neprav
 {
     public static class Bootstrapper
     {
-        public static IUnityContainer Initialize()
+        public static IUnityContainer Initialize(WebConfig config)
         {
-            var container = BuildUnityContainer();
+            var container = BuildUnityContainer(config);
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
             return container;
         }
 
-        private static IUnityContainer BuildUnityContainer()
+        private static IUnityContainer BuildUnityContainer(WebConfig config)
         {
             var container = new UnityContainer();
 
@@ -26,15 +27,17 @@ namespace Ktoto.Neprav
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>();    
-            RegisterTypes(container);
+            RegisterTypes(container, config);
 
             return container;
         }
 
-        private static void RegisterTypes(IUnityContainer container)
+        private static void RegisterTypes(IUnityContainer container, WebConfig config)
         {
-            var factory = NhDalFactory.Create();
-            container.RegisterType<IDal>(new InjectionFactory(_ => factory.Create()));
+	        var cs = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+	        var factory = NhDalFactory.Create(cs, config.Expose);
+	        container.RegisterInstance<IDalFactory>(factory);
+            container.RegisterType<IDal>(new InjectionFactory(_ => _.Resolve<IDalFactory>().Create()));
             container.RegisterType<IdentityInfo>(PerRequest());
             container.RegisterType<IViewPageActivator, MyViewActivator>(PerRequest());
             RegisterConnections(container);
@@ -42,7 +45,6 @@ namespace Ktoto.Neprav
 
         private static void RegisterConnections(IUnityContainer container)
         {
-            container.RegisterInstance(new OneToMany<Theme, Comment>(_ => _.Comments, null));
         }
 
         private static LifetimeManager PerRequest()

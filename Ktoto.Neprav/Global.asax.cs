@@ -1,9 +1,7 @@
-﻿using System.Web.Http;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Ktoto.Neprav.DAL;
-using Ktoto.Neprav.Utils;
 using Microsoft.Practices.Unity;
 
 namespace Ktoto.Neprav
@@ -15,19 +13,30 @@ namespace Ktoto.Neprav
     {
         protected void Application_Start()
         {
+	        var config = new WebConfig
+	        {
+		        Expose = false
+	        };
+
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            var container = Bootstrapper.Initialize(config);
 
-            var container = Bootstrapper.Initialize();
-
-            using (var dal = container.Resolve<IDalFactory>().Create())
-            {
-                SampleData.FillDal(dal);
-            }
+	        if (config.Expose)
+	        {
+		        InitialData(container);
+	        }
         }
+
+	    private static void InitialData(IUnityContainer container)
+	    {
+		    using (var dal = container.Resolve<IDalFactory>().Create())
+		    {
+			    SampleData.FillDal(dal);
+		    }
+	    }
     }
 }

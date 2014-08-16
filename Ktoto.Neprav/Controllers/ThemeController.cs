@@ -16,13 +16,11 @@ namespace Ktoto.Neprav.Controllers
     {
         private readonly IDal _dal;
         private readonly IdentityInfo _identity;
-        private readonly OneToMany<Theme, Comment> _themeHasComments;
 
-        public ThemeController(IDal dal, IdentityInfo identity, OneToMany<Theme, Comment> themeHasComments)
+        public ThemeController(IDal dal, IdentityInfo identity)
         {
             _dal = dal;
             _identity = identity;
-            _themeHasComments = themeHasComments;
         }
 
         public ActionResult Index(string name)
@@ -45,13 +43,12 @@ namespace Ktoto.Neprav.Controllers
             var theme = _dal.Query<Theme>().Single(_ => _.Name == commentModel.ThemeName);
             var comment = new Comment
                 {
-                    Author = _identity.Author,
                     Text = commentModel.Text,
                     Opinion = commentModel.Opinion
                 };
+			R.Commented(_identity.Author, theme, comment);
             _dal.Attach(comment);
 
-            _themeHasComments.ParentReceivesChild(theme, comment);
             return RedirectToAction("Index", new {name = theme.Name});
         }
     }

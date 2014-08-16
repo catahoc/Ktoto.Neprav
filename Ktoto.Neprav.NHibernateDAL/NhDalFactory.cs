@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg.Db;
 using Ktoto.Neprav.DAL;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Tool.hbm2ddl;
 
@@ -17,21 +18,23 @@ namespace Ktoto.Neprav
             _sessionFactory = sessionFactory;
         }
 
-        public static IDalFactory Create()
+		public static NhDalFactory Create(string connectionString, bool expose)
         {
-            var dbConfig = OracleDataClientConfiguration.Oracle10
-                  .Dialect("NHibernate.Dialect.Oracle10gDialect");
 
-            dbConfig = dbConfig
-                .Driver<OracleDataClientDriver>()
-                .ConnectionString("data source=evol10; user id=amakhov; password=test");
+	        var dbConfig = MsSqlConfiguration.MsSql2012
+		        .Dialect<MsSql2012Dialect>()
+		        .Driver<SqlClientDriver>()
+		        .ConnectionString(connectionString);
             var cfg = Fluently.Configure()
                     .Mappings(_ => _.FluentMappings.AddFromAssemblyOf<AuthorMapping>())
                     .Database(dbConfig)
                     .ExposeConfiguration(_ =>
                         {
-                            var export = new SchemaExport(_);
-                            export.Execute(true, true, false);
+	                        if (expose)
+	                        {
+								var export = new SchemaExport(_);
+								export.Execute(true, true, false);
+							}
                         });
             var sessionFactory = cfg.BuildSessionFactory();
             return new NhDalFactory(sessionFactory);

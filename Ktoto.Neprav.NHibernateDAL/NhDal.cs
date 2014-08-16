@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Transactions;
 using Ktoto.Neprav.DAL;
 using NHibernate;
 using NHibernate.Linq;
@@ -8,10 +9,13 @@ namespace Ktoto.Neprav
     public class NhDal: IDal
     {
         private readonly ISession _session;
+	    private readonly TransactionScope _scope;
 
         public NhDal(ISessionFactory factory)
         {
-            _session = factory.OpenSession();
+			_scope = new TransactionScope();
+			_session = factory.OpenSession();
+
         }
 
         public IQueryable<T> Query<T>()
@@ -31,7 +35,10 @@ namespace Ktoto.Neprav
 
         public void Dispose()
         {
+	        _session.Flush();
             _session.Dispose();
+	        _scope.Complete();
+	        _scope.Dispose();
         }
     }
 }
