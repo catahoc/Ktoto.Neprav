@@ -1,8 +1,4 @@
-﻿using System.EnterpriseServices.Internal;
-using Ktoto.Neprav.Attributes;
-using Ktoto.Neprav.Domain;
-
-namespace Ktoto.Neprav.DAL
+﻿namespace Ktoto.Neprav.DAL
 {
     public static class R
     {

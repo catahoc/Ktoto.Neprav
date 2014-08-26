@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthCookieMapping.cs" />
     <Compile Include="AuthorMapping.cs" />
     <Compile Include="CommentMapping.cs" />
     <Compile Include="FluentExtensions.cs" />

@@ -1,5 +1,4 @@
 ﻿using FluentNHibernate.Mapping;
-using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav
 {
@@ -11,11 +10,14 @@ namespace Ktoto.Neprav
 
             Map(_ => _.Sex);
             Map(_ => _.Name);
+            Map(_ => _.Email);
+            Map(_ => _.PwdHash);
+            Map(_ => _.Salt);
 
             HasMany(_ => _.Themes);
             HasMany(_ => _.Comments);
 
 			HasManyToMany(_ => _.LikedTargets);
-		}
+        }
     }
 }

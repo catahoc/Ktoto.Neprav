@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Ktoto.Neprav.Attributes;
 using Ktoto.Neprav.DAL;
-using Ktoto.Neprav.Domain;
 using Ktoto.Neprav.Models;
 using Ktoto.Neprav.Utils;
 

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Ktoto.Neprav.Domain
+namespace Ktoto.Neprav
 {
 	public class Theme : LikeTarget
     {
@@ -10,6 +11,7 @@ namespace Ktoto.Neprav.Domain
         }
 
 		public virtual ICollection<Comment> Comments { get; set; }
+		public virtual DateTimeOffset Created { get; set; }
         public virtual Author Author { get; set; }
         public virtual string Name { get; set; }
     }

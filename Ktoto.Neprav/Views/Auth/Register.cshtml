@@ -1,0 +1,23 @@
+﻿@model dynamic
+
+@{
+	ViewBag.Title = "Регистрация";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<form action="@Url.Action("AcceptRegister", "Auth")">
+	<span>Email:</span>
+	<input type="text" name="Email" placeholder="billgates@microsoft.com"/>
+	<br/>
+
+	<span>Имя пользователя:</span>
+	<input type="text" name="Name" placeholder="Уильям Гейтс Мл."/>
+	<br />
+
+	<span>Пароль:</span>
+	<input type="password" name="Pwd"/>
+	<br />
+	
+	<input type="submit" value="Выполнить регистрацию"/>
+</form>

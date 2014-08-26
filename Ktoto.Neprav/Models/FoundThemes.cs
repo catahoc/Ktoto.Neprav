@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav.Models
 {

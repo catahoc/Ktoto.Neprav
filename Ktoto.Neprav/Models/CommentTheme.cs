@@ -1,6 +1,4 @@
-﻿using Ktoto.Neprav.Domain;
-
-namespace Ktoto.Neprav.Models
+﻿namespace Ktoto.Neprav.Models
 {
     public class CommentTheme
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ktoto.Neprav.Domain
+namespace Ktoto.Neprav
 {
     public class Author
     {
@@ -13,6 +13,9 @@ namespace Ktoto.Neprav.Domain
 
 		public virtual long Id { get; set; }
 		public virtual string Name { get; set; }
+		public virtual string Email { get; set; }
+		public virtual string Salt { get; set; }
+		public virtual byte[] PwdHash { get; set; }
         public virtual Sex Sex { get; set; }
         public virtual ICollection<Theme> Themes { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

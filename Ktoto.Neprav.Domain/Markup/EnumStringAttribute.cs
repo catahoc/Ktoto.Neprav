@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ktoto.Neprav.Domain.Markup
+namespace Ktoto.Neprav.Markup
 {
     public class EnumStringAttribute: Attribute
     {

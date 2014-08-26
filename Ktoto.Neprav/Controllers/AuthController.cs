@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ktoto.Neprav.DAL;
-using Ktoto.Neprav.Domain;
 using Ktoto.Neprav.Models;
 using Ktoto.Neprav.Attributes;
 using Ktoto.Neprav.Utils;
@@ -14,40 +13,43 @@ namespace Ktoto.Neprav.Controllers
     public class AuthController : Controller
     {
         private readonly IDal _dal;
+	    private readonly AuthManager _authManager;
 
-        public AuthController(IDal dal)
+	    public AuthController(IDal dal, AuthManager authManager)
         {
-            _dal = dal;
+	        _dal = dal;
+	        _authManager = authManager;
         }
 
-        [Auth(AuthRequiredOption.RequiresNotAuth)]
+	    [Auth(AuthRequiredOption.RequiresNotAuth)]
         public ActionResult Login(LoginModel loginModel)
         {
-            var users = _dal.Query<Author>().Where(_ => _.Name == loginModel.User).ToList();
+            var users = _dal.Query<Author>().Where(_ => _.Email == loginModel.Mail).ToList();
             if (users.Count == 1)
             {
                 var author = users.Single();
-                AuthManager.MarkResponse(Response, author);
-                if (string.IsNullOrEmpty(loginModel.BackUrl))
-                {
-                    return RedirectToAction("Index", "Themes");
-                }
-                else
-                {
-                    return Redirect(loginModel.BackUrl);
-                }
+				if (_authManager.CheckPwd(author, loginModel))
+	            {
+					_authManager.MarkResponse(Response, author);
+					if (string.IsNullOrEmpty(loginModel.BackUrl))
+					{
+						return RedirectToAction("Index", "Themes");
+					}
+					else
+					{
+						return Redirect(loginModel.BackUrl);
+					}
+				}
             }
-            else
-            {
-                ModelState.AddModelError("login", "Ошибка входа. Повторите попытку");
-                return View(loginModel);
-            }
+
+	        ModelState.AddModelError("login", "Ошибка входа. Повторите попытку");
+	        return View(loginModel);
         }
 
         [Auth(AuthRequiredOption.Required)]
         public ActionResult Logout(LogoutModel model)
         {
-            AuthManager.Logout(Response);
+			_authManager.Logout(Response);
             if (string.IsNullOrEmpty(model.BackUrl))
             {
                 return RedirectToAction("Index", "Themes");
@@ -57,5 +59,33 @@ namespace Ktoto.Neprav.Controllers
                 return Redirect(model.BackUrl);
             }
         }
+
+		[Auth(AuthRequiredOption.RequiresNotAuth)]
+	    public ActionResult Register()
+		{
+			return View();
+		}
+
+	    public ActionResult AcceptRegister(RegistrationInfo registration)
+	    {
+		    var hashSalt = PwdManager.ComputeHash(registration.Pwd);
+		    var author = new Author
+		    {
+			    Email = registration.Email,
+			    Name = registration.Email,
+			    PwdHash = hashSalt.Hash,
+			    Salt = hashSalt.Salt,
+			    Sex = Sex.Male
+		    };
+			_dal.Attach(author);
+			_authManager.MarkResponse(Response, author);
+		    return RedirectToAction("RegistrationSuccessful");
+	    }
+
+		[Auth(AuthRequiredOption.Required)]
+	    public ActionResult RegistrationSuccessful()
+		{
+			return View();
+		}
     }
 }

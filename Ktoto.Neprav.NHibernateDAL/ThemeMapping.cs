@@ -1,5 +1,4 @@
 ﻿using FluentNHibernate.Mapping;
-using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav
 {
@@ -10,6 +9,7 @@ namespace Ktoto.Neprav
 			KeyColumn("ID");
 
             Map(_ => _.Name);
+	        Map(_ => _.Created);
 
             References(_ => _.Author);
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ktoto.Neprav.Domain
+namespace Ktoto.Neprav
 {
 	public class LikeTarget
     {

@@ -135,6 +135,8 @@
     <Compile Include="Attributes\Auth.cs" />
     <Content Include="Content\Like.css" />
     <Compile Include="Controllers\LikesController.cs" />
+    <Compile Include="Models\RegistrationInfo.cs" />
+    <Compile Include="Utils\PwdManager.cs" />
     <Compile Include="WebConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
@@ -226,8 +228,10 @@
     <Content Include="Global.asax" />
     <Content Include="Images\Like-hl.png" />
     <Content Include="Images\Like.pdn" />
+    <Content Include="Images\Logo.pdn" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\Like.png" />
+    <Content Include="Images\Logo.png" />
     <Content Include="Images\NotLike.png" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -276,6 +280,9 @@
     <Content Include="Views\Themes\Search.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="App_Code\Snippets.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Auth\RegistrationSuccessful.cshtml" />
+    <Content Include="Views\Themes\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

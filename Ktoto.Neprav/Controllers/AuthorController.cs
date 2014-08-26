@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Ktoto.Neprav.DAL;
-using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav.Controllers
 {

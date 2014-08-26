@@ -1,4 +1,4 @@
-﻿namespace Ktoto.Neprav.Domain
+﻿namespace Ktoto.Neprav
 {
     public class Comment : LikeTarget
     {

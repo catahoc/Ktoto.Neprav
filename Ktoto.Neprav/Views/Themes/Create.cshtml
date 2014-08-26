@@ -1,0 +1,11 @@
+﻿@model dynamic
+
+@{
+	ViewBag.Title = "Новая тема";
+}
+
+<h2>Новая тема</h2>
+<form action="@Url.Action("AcceptCreate")" method="POST">
+	<textarea name="name" placeholder="Текст новой темы"></textarea>
+	<input type="submit" value="Создать"/>
+</form>

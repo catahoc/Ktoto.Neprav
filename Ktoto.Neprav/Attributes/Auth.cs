@@ -33,7 +33,7 @@ namespace Ktoto.Neprav.Attributes
         {
             if (_option == AuthRequiredOption.Required && !_identity.IsAuthorized)
             {
-                throw new Exception("Надо залоггироваться");
+                throw new Exception("Надо войти");
             }
             if (_option == AuthRequiredOption.RequiresNotAuth && _identity.IsAuthorized)
             {

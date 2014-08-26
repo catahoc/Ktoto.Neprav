@@ -1,6 +1,6 @@
-﻿using Ktoto.Neprav.Domain.Markup;
+﻿using Ktoto.Neprav.Markup;
 
-namespace Ktoto.Neprav.Domain
+namespace Ktoto.Neprav
 {
     public enum Opinion
     {

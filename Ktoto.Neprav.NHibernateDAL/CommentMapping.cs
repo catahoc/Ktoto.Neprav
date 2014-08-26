@@ -1,5 +1,4 @@
 ﻿using FluentNHibernate.Mapping;
-using Ktoto.Neprav.Domain;
 
 namespace Ktoto.Neprav
 {

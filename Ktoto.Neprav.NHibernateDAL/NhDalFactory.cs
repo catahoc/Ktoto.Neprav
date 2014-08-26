@@ -29,6 +29,7 @@ namespace Ktoto.Neprav
 				.Mappings(_ => _.FluentMappings
 					.Add<AuthorMapping>()
 					.Add<LikeTargetMapping>()
+					.Add<AuthCookieMapping>()
 					.Add<ThemeMapping>()
 					.Add<CommentMapping>())
 				.Database(dbConfig)
@@ -37,7 +38,8 @@ namespace Ktoto.Neprav
 					if (expose)
 					{
 						var export = new SchemaExport(_);
-						export.Execute(true, true, false);
+						export.Drop(false, true);
+						export.Create(false, true);
 					}
 				});
             var sessionFactory = cfg.BuildSessionFactory();

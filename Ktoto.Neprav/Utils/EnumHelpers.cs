@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System;
-using Ktoto.Neprav.Domain.Markup;
+using Ktoto.Neprav.Markup;
 
 namespace Ktoto.Neprav.Utils
 {

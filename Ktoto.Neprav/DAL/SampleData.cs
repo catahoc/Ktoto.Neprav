@@ -1,4 +1,5 @@
-﻿using Ktoto.Neprav.Domain;
+﻿using System;
+using Ktoto.Neprav.Utils;
 
 namespace Ktoto.Neprav.DAL
 {
@@ -8,14 +9,19 @@ namespace Ktoto.Neprav.DAL
         {
             var theme = new Theme
             {
-                Name = "Грязные гомосеки"
+                Name = "Грязные гомосеки",
+				Created = DateTimeOffset.Now
             };
 
+	        var pwdData = PwdManager.ComputeHash("123456");
             // gay
             var gayBoris = new Author()
             {
                 Name = "Пидор боря",
-                Sex = Sex.Female
+                Sex = Sex.Female,
+				Email = "pidorborya@gmail.com",
+				Salt = pwdData.Salt,
+				PwdHash = pwdData.Hash
             };
 
             R.CreatedTheme(gayBoris, theme);
@@ -28,11 +34,15 @@ namespace Ktoto.Neprav.DAL
             };
             R.Commented(gayBoris, theme, comment1);
 
-            // norm
+			pwdData = PwdManager.ComputeHash("123456");
+			// norm
             var anatoly = new Author()
             {
                 Name = "Анатолий поцриоц",
-                Sex = Sex.Male
+                Sex = Sex.Male,
+				Email = "anatoly@gmail.com",
+				Salt = pwdData.Salt,
+				PwdHash = pwdData.Hash
             };
             var comment2 = new Comment()
             {
@@ -42,11 +52,15 @@ namespace Ktoto.Neprav.DAL
             };
             R.Commented(anatoly, theme, comment2);
 
-            // neu
+			pwdData = PwdManager.ComputeHash("123456");
+			// neu
             var nastic = new Author()
             {
                 Name = "Настик1993",
-                Sex = Sex.Female
+                Sex = Sex.Female,
+				Email = "nastic1993@gmail.com",
+				Salt = pwdData.Salt,
+				PwdHash = pwdData.Hash
             };
             var comment3 = new Comment()
             {
