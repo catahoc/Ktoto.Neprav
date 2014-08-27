@@ -11,7 +11,7 @@ namespace Ktoto.Neprav
         public IdentityInfo(AuthManager authManager)
         {
 	        var ctx = HttpContext.Current;
-			var author = authManager.ImpersonateRequest(ctx.Request);
+			var author = authManager.FetchRemembered(ctx.Request);
             _isAuthorized = author != null;
             _author = author;
         }

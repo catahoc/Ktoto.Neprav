@@ -17,8 +17,12 @@ namespace Ktoto.Neprav.Utils
 		    _dal = dal;
 	    }
 
-	    public void MarkResponse(HttpResponseBase response, Author author)
+	    public void Remember(HttpResponseBase response, Author author)
 	    {
+		    foreach (var existingCookie in _dal.Query<AuthCookie>().Where(_ => _.Id == author.Id).ToList())
+		    {
+			    _dal.Delete(existingCookie);
+		    }
 		    var cookie = new AuthCookie
 		    {
 			    Author = author,
@@ -28,7 +32,7 @@ namespace Ktoto.Neprav.Utils
             response.SetCookie(new HttpCookie(AuthCookie, Convert.ToString(cookie.Hash)));
         }
 
-	    public Author ImpersonateRequest(HttpRequest request)
+	    public Author FetchRemembered(HttpRequest request)
 	    {
 		    try
 		    {
@@ -57,7 +61,7 @@ namespace Ktoto.Neprav.Utils
 		    }
 	    }
 
-	    public void Logout(HttpResponseBase response)
+	    public void Forget(HttpResponseBase response)
         {
             response.SetCookie(new HttpCookie(AuthCookie, string.Empty) {Expires = DateTime.Now});
         }

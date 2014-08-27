@@ -30,7 +30,7 @@ namespace Ktoto.Neprav.Controllers
                 var author = users.Single();
 				if (_authManager.CheckPwd(author, loginModel))
 	            {
-					_authManager.MarkResponse(Response, author);
+					_authManager.Remember(Response, author);
 					if (string.IsNullOrEmpty(loginModel.BackUrl))
 					{
 						return RedirectToAction("Index", "Themes");
@@ -49,7 +49,7 @@ namespace Ktoto.Neprav.Controllers
         [Auth(AuthRequiredOption.Required)]
         public ActionResult Logout(LogoutModel model)
         {
-			_authManager.Logout(Response);
+			_authManager.Forget(Response);
             if (string.IsNullOrEmpty(model.BackUrl))
             {
                 return RedirectToAction("Index", "Themes");
@@ -78,7 +78,7 @@ namespace Ktoto.Neprav.Controllers
 			    Sex = Sex.Male
 		    };
 			_dal.Attach(author);
-			_authManager.MarkResponse(Response, author);
+			_authManager.Remember(Response, author);
 		    return RedirectToAction("RegistrationSuccessful");
 	    }
 
