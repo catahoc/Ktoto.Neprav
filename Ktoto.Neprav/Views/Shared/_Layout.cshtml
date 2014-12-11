@@ -1,4 +1,5 @@
-﻿@inherits Ktoto.Neprav.Utils.MyWebViewPage
+﻿@using System
+@inherits Ktoto.Neprav.Utils.MyWebViewPage
 @{
     Identity = DependencyResolver.Current.GetService<IdentityInfo>();
 }
@@ -11,6 +12,19 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        <script src="//vk.com/js/api/xd_connection.js?2" type="text/javascript">
+        </script>
+        <script type="text/javascript">
+            VK.init(function () {
+                VK.api("users.get", { user_ids: "5349661"}, function(data) {
+                    if (data.response) {
+                        alert(data.response);
+                    } 
+                });
+            }, function () {
+                alert('failed');
+            }, '5.27');
+        </script>
     </head>
     <body>
         <header>

@@ -37,7 +37,7 @@ namespace Ktoto.Neprav
 	    {
 		    var cs = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 			
-		    var factory = NhDalFactory.Create(cs, WebConfig.ResetSchemata);
+		    var factory = CreateDalFactory(cs);
 		    if (WebConfig.ResetSchemata)
 		    {
 			    using (var dal = factory.Create())
@@ -55,7 +55,13 @@ namespace Ktoto.Neprav
 		    _container.RegisterType<IViewPageActivator, MyViewActivator>(PerRequest());
 	    }
 
-	    private static LifetimeManager PerRequest()
+        private static IDalFactory CreateDalFactory(string cs)
+        {
+            return NhDalFactory.Create(cs, WebConfig.ResetSchemata);
+            //return new InMemoryDalFactory();
+        }
+
+        private static LifetimeManager PerRequest()
 	    {
 		    return new PerRequestLifetimeManager();
 	    }

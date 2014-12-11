@@ -15,7 +15,7 @@
                 <form action="@Url.Action("Comment")">
                     <input type="hidden" name="Opinion" value="@opinionModel.Opinion"/>
                     <input type="hidden" name="ThemeId" value="@Model.Theme.Id"/>
-                    <textarea name="Text"></textarea>
+                    <textarea name="Text" class="comment-editor"></textarea>
                     <input type="submit" value="Оставить комментарий…"/>
                 </form>
                 @foreach (var comment in opinionModel.Comments)
