@@ -284,9 +284,7 @@
     <Content Include="Views\Auth\RegistrationSuccessful.cshtml" />
     <Content Include="Views\Themes\Create.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
