@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
@@ -33,9 +34,22 @@ namespace Ktoto.Neprav
             DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
         }
 
+	    private static string PickConnectionStringName()
+	    {
+		    if (Environment.MachineName == "CATAHOC-PC")
+		    {
+			    return "LocalConnection";
+		    }
+		    else
+		    {
+			    return "SomeeConnection";
+		    }
+	    }
+
 	    private static void BootstrapServices()
 	    {
-		    var cs = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+		    var connectionStringName = PickConnectionStringName();
+		    var cs = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
 			
 		    var factory = CreateDalFactory(cs);
 		    if (WebConfig.ResetSchemata)
