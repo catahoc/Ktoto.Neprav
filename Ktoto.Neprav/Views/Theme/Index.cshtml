@@ -7,6 +7,13 @@
 
 <h2>@ViewBag.Title @Snippets.Liking(Model.Theme, This)</h2>
 
+<script type="text/javascript">
+    $(function () {
+        var authorsToLoad = $('.load-vk-author');
+        loadUsersIntoDivs(authorsToLoad);
+    });
+</script>
+
 <div id="theme">
     @foreach (var opinionModel in Model.ThemeOpinionViewModels)
     {
@@ -20,14 +27,28 @@
                 </form>
                 @foreach (var comment in opinionModel.Comments)
                 {
+                    var url = "https://vk.com/id"+comment.Author.UserId;
                     <div class="comment">
-                        <span class="author">
-                            пишет:
-                        </span>
-	                    <span class="body">
-		                    @comment.Text
-	                    </span>
-						@Snippets.Liking(comment, This)
+                        <table class="load-vk-author author" data-user-id="@comment.Author.UserId">
+                            <tr>
+                                <td rowspan="2">
+                                    <a href="@url" class="avatar-link">
+                                        <img class="avatar" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@url" class="name-link"></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="body">
+                                        @comment.Text
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                        </table>
                     </div>
                 }
             </div>

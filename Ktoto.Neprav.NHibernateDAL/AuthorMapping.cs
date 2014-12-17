@@ -8,6 +8,8 @@ namespace Ktoto.Neprav
         {
             Id(_ => _.Id).GeneratedBy.Identity();
 
+	        Map(_ => _.UserId);
+
             HasMany(_ => _.Feeds);
 			HasMany(_ => _.Opinions);
         }

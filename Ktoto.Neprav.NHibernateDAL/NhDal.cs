@@ -40,10 +40,10 @@ namespace Ktoto.Neprav
 
         public void Dispose()
         {
-	        _session.Flush();
-            _session.Dispose();
-	        _scope.Complete();
-	        _scope.Dispose();
+			_session.Flush();
+			_session.Dispose();
+			_scope.Complete();
+			_scope.Dispose();
         }
     }
 }

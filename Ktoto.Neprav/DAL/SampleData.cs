@@ -19,7 +19,7 @@ namespace Ktoto.Neprav.DAL
             // ps
             var ps = new Author()
             {
-                UserId = 1484336
+                UserId = 5349661
             };
 
             R.CreatedTheme(ps, theme);

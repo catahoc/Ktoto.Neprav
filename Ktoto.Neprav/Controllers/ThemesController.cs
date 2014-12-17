@@ -20,7 +20,12 @@ namespace Ktoto.Neprav.Controllers
         }
 
 	    public ActionResult Index()
-        {
+	    {
+		    var theme = _dal.Query<Theme>().FirstOrDefault();
+		    if (theme != null)
+		    {
+			    return RedirectToAction("Index", "Theme", new {themeId = theme.Id});
+		    }
             return View();
         }
 
