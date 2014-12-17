@@ -132,14 +132,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
-    <Compile Include="Attributes\Auth.cs" />
     <Content Include="Content\Like.css" />
-    <Compile Include="Controllers\LikesController.cs" />
+    <Compile Include="Models\IdentityInfo.cs" />
     <Compile Include="Models\RegistrationInfo.cs" />
+    <Content Include="Scripts\api.js" />
     <Compile Include="Utils\PwdManager.cs" />
     <Compile Include="WebConfig.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\ThemeController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
     <Compile Include="DAL\R.cs" />
@@ -147,14 +145,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IdentityInfo.cs" />
     <Compile Include="Models\CommentTheme.cs" />
     <Compile Include="Models\FoundThemes.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ThemeViewModel.cs" />
-    <Compile Include="Models\ViewAuthorPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\AuthManager.cs" />
     <Compile Include="Utils\EnumHelpers.cs" />
     <Compile Include="Utils\MyFilterProvider.cs" />
     <Compile Include="Utils\MyViewActivator.cs" />
@@ -275,16 +270,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Theme\Index.cshtml" />
-    <Content Include="Views\Author\Page.cshtml" />
     <Content Include="Views\Themes\Index.cshtml" />
     <Content Include="Views\Themes\Search.cshtml" />
-    <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="App_Code\Snippets.cshtml" />
-    <Content Include="Views\Auth\Register.cshtml" />
-    <Content Include="Views\Auth\RegistrationSuccessful.cshtml" />
     <Content Include="Views\Themes\Create.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

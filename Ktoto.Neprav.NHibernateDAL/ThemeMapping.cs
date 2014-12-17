@@ -10,10 +10,6 @@ namespace Ktoto.Neprav
 
             Map(_ => _.Name);
 	        Map(_ => _.Created);
-
-            References(_ => _.Author);
-
-            HasMany(_ => _.Comments);
         }
     }
 }

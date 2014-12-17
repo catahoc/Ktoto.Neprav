@@ -1,24 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Ktoto.Neprav
 {
-    public class Author
-    {
-        public Author()
-        {
-            Themes = new List<Theme>();
-            Comments = new List<Comment>();
-			LikedTargets = new List<LikeTarget>();
-        }
+	public class Author
+	{
+		public Author()
+		{
+			Feeds = new HashSet<Feed>();
+			Opinions = new HashSet<Opinion>();
+		}
 
 		public virtual long Id { get; set; }
-		public virtual string Name { get; set; }
-		public virtual string Email { get; set; }
-		public virtual string Salt { get; set; }
-		public virtual byte[] PwdHash { get; set; }
-        public virtual Sex Sex { get; set; }
-        public virtual ICollection<Theme> Themes { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-		public virtual ICollection<LikeTarget> LikedTargets { get; set; }
-    }
+
+		public virtual long UserId { get; set; }
+
+		public virtual ICollection<Feed> Feeds { get; set; }
+		public virtual ICollection<Opinion> Opinions { get; set; }
+	}
 }

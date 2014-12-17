@@ -49,13 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthCookieMapping.cs" />
     <Compile Include="AuthorMapping.cs" />
     <Compile Include="CommentMapping.cs" />
-    <Compile Include="FluentExtensions.cs" />
-    <Compile Include="LikeTargetMapping.cs" />
+    <Compile Include="FeedMapping.cs" />
     <Compile Include="NhDalFactory.cs" />
     <Compile Include="NhDal.cs" />
+    <Compile Include="OpinionMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThemeMapping.cs" />
   </ItemGroup>

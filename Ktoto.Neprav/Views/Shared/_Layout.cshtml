@@ -1,8 +1,5 @@
 ﻿@using System
 @inherits Ktoto.Neprav.Utils.MyWebViewPage
-@{
-    Identity = DependencyResolver.Current.GetService<IdentityInfo>();
-}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,18 +9,25 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/Scripts/api.js")
+        @Scripts.Render("~/Scripts/jquery-2.1.1.js")
         <script src="//vk.com/js/api/xd_connection.js?2" type="text/javascript">
         </script>
         <script type="text/javascript">
-            VK.init(function () {
-                VK.api("users.get", { user_ids: "5349661"}, function(data) {
-                    if (data.response) {
-                        alert(data.response);
-                    } 
+            $(function() {
+                VK.init(function () {
+                    var userId = getGetArg('user_id');
+                    VK.api("users.get", { user_ids: userId, fields: "photo_50,first_name,last_name" }, function (data) {
+                        if (data.response) {
+                            var authStub = $('#vk-auth');
+                            var userData = data.response[0];
+                            authStub.append($('<img />').attr('src', userData.photo_50));
+                            authStub.append($('<span />').attr('style', 'min-width: 200px').attr('text', userData.first_name + ' ' + userData.last_name));
+                        }
+                    });
                 });
-            }, function () {
-                alert('failed');
-            }, '5.27');
+            });
+
         </script>
     </head>
     <body>
@@ -37,21 +41,7 @@
                     </p>
                 </div>
                 <div class="float-right">
-                    <section id="login">
-                        @if (Identity.IsAuthorized)
-                        {
-	                        <span>Welcome, @Html.ActionLink(Identity.Author.Name, "Page", "Author", new ViewAuthorPage(Identity.Author), null) !</span>
-	                        <span>@Html.ActionLink("Выйти", "Logout", "Auth", new LogoutModel {BackUrl = Request.RawUrl}, null)</span>
-						}
-						else
-						{
-							<form action="@Url.Action("Login", "Auth")" method="POST">
-								Эл. почта: <input type="text" name="Mail" />
-								Пароль: <input type="password" name="Password" />
-								<input type="submit" value="Вход" />
-							</form>
-							@Html.ActionLink("Регистрация", "Register", "Auth")
-                        }
+                    <section id="vk-auth">
                     </section>
                     <nav>
                         <ul id="menu">

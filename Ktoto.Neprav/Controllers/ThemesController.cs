@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Ktoto.Neprav.Attributes;
 using Ktoto.Neprav.DAL;
 using Ktoto.Neprav.Models;
 
@@ -31,18 +30,15 @@ namespace Ktoto.Neprav.Controllers
             return View(new FoundThemes(found, text));
         }
 
-		[Auth(AuthRequiredOption.Required)]
 	    public ActionResult Create()
 	    {
 		    return View();
 	    }
 
-		[Auth(AuthRequiredOption.Required)]
 		public ActionResult AcceptCreate(string name)
 		{
 			var theme = new Theme
 			{
-				Author = _identity.Author,
 				Name = name,
 				Created = DateTimeOffset.Now
 			};

@@ -16,7 +16,6 @@ namespace Ktoto.Neprav.Utils
         public object Create(ControllerContext controllerContext, Type type)
         {
             var page = _container.Resolve(type);
-            type.GetProperty("Identity").SetValue(page, _container.Resolve<IdentityInfo>());
 			type.GetProperty("This").SetValue(page, controllerContext.HttpContext.Request.Url.AbsoluteUri);
             return page;
         }

@@ -5,7 +5,7 @@
     ViewBag.Title = Model.Theme.Name;
 }
 
-<h2>@ViewBag.Title @Snippets.Liking(Model.Theme, Identity, This)</h2>
+<h2>@ViewBag.Title @Snippets.Liking(Model.Theme, This)</h2>
 
 <div id="theme">
     @foreach (var opinionModel in Model.ThemeOpinionViewModels)
@@ -13,8 +13,8 @@
         <div class="opinion @opinionModel.Opinion">
             <div>
                 <form action="@Url.Action("Comment")">
-                    <input type="hidden" name="Opinion" value="@opinionModel.Opinion"/>
-                    <input type="hidden" name="ThemeId" value="@Model.Theme.Id"/>
+                    <input type="hidden" name="OpinionColor" value="@opinionModel.Opinion"/>
+                    <input type="hidden" name="ThemeAuthorId" value="@Model.Theme.Id"/>
                     <textarea name="Text" class="comment-editor"></textarea>
                     <input type="submit" value="Оставить комментарий…"/>
                 </form>
@@ -22,13 +22,12 @@
                 {
                     <div class="comment">
                         <span class="author">
-                            @Html.ActionLink(comment.Author.Name, "Page", "Author", new {name = comment.Author.Name}, null)
                             пишет:
                         </span>
 	                    <span class="body">
 		                    @comment.Text
 	                    </span>
-						@Snippets.Liking(comment, Identity, This)
+						@Snippets.Liking(comment, This)
                     </div>
                 }
             </div>

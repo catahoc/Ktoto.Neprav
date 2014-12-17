@@ -39,13 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthCookie.cs" />
     <Compile Include="Author.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="LikeTarget.cs" />
+    <Compile Include="Feed.cs" />
     <Compile Include="Markup\EnumStringAttribute.cs" />
-    <Compile Include="Enum\Opinion.cs" />
-    <Compile Include="Enum\Sex.cs" />
+    <Compile Include="Enum\OpinionColor.cs" />
+    <Compile Include="Opinion.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -25,16 +25,16 @@ namespace Ktoto.Neprav.Models
     }
     public class ThemeOpinionViewModel
     {
-        private readonly Opinion _opinion;
+        private readonly OpinionColor _opinion;
         private readonly Comment[] _comments;
 
-        public ThemeOpinionViewModel(Opinion opinion, Comment[] comments)
+		public ThemeOpinionViewModel(OpinionColor opinion, Comment[] comments)
         {
             _opinion = opinion;
             _comments = comments;
         }
 
-        public Opinion Opinion
+		public OpinionColor Opinion
         {
             get { return _opinion; }
         }

@@ -11,8 +11,7 @@ namespace Ktoto.Neprav
             Map(_ => _.Opinion);
             Map(_ => _.Text);
 
-            References(_ => _.Author);
-            References(_ => _.Theme);
+            References(_ => _.Feed);
         }
     }
 }

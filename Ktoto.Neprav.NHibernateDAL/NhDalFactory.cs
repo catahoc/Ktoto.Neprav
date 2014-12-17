@@ -28,9 +28,9 @@ namespace Ktoto.Neprav
 			var cfg = Fluently.Configure()
 				.Mappings(_ => _.FluentMappings
 					.Add<AuthorMapping>()
-					.Add<LikeTargetMapping>()
-					.Add<AuthCookieMapping>()
+					.Add<FeedMapping>()
 					.Add<ThemeMapping>()
+					.Add<OpinionMapping>()
 					.Add<CommentMapping>())
 				.Database(dbConfig)
 				.ExposeConfiguration(_ =>

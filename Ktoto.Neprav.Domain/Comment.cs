@@ -1,10 +1,9 @@
 ﻿namespace Ktoto.Neprav
 {
-    public class Comment : LikeTarget
+    public class Comment : Feed
     {
 		public virtual string Text { get; set; }
-        public virtual Opinion Opinion { get; set; }
-        public virtual Author Author { get; set; }
-        public virtual Theme Theme { get; set; }
+        public virtual OpinionColor Opinion { get; set; }
+        public virtual Feed Feed { get; set; }
     }
 }

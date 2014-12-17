@@ -4,6 +4,6 @@
     {
         public string Text { get; set; }
 		public long ThemeId { get; set; }
-        public Opinion Opinion { get; set; }
+        public OpinionColor Opinion { get; set; }
     }
 }

@@ -64,7 +64,6 @@ namespace Ktoto.Neprav
 		    _container.RegisterInstance<IDalFactory>(factory);
 
 		    // per request
-		    _container.RegisterType<IdentityInfo>(PerRequest());
 		    _container.RegisterType<IDal>(PerRequest(), new InjectionFactory(_ => _.Resolve<IDalFactory>().Create()));
 		    _container.RegisterType<IViewPageActivator, MyViewActivator>(PerRequest());
 	    }
