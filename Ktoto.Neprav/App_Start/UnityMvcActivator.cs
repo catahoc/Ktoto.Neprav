@@ -1,6 +1,7 @@
 using System;
 using System.Configuration;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Ktoto.Neprav;
 using Ktoto.Neprav.DAL;
@@ -66,6 +67,10 @@ namespace Ktoto.Neprav
 		    // per request
 		    _container.RegisterType<IDal>(PerRequest(), new InjectionFactory(_ => _.Resolve<IDalFactory>().Create()));
 		    _container.RegisterType<IViewPageActivator, MyViewActivator>(PerRequest());
+			_container.RegisterType<IVkArgsSource, VkArgsSource>(PerRequest());
+		    _container.RegisterType<IVkArgs, VkArgs>(PerRequest(),
+			    new InjectionFactory(
+				    c => new VkArgs(c.Resolve<IVkArgsSource>(), HttpContext.Current.Request, HttpContext.Current.Response)));
 	    }
 
         private static IDalFactory CreateDalFactory(string cs)

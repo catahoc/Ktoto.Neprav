@@ -25,6 +25,6 @@ loadUsersIntoDivs = function (authorsToLoad) {
 };
 $(function () {
     VK.init(function () {
-
     });
 });
+

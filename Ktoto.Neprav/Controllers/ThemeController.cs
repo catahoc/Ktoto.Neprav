@@ -14,12 +14,14 @@ namespace Ktoto.Neprav.Controllers
         private readonly IDal _dal;
 	    private readonly IdentityInfo _identity;
 	    private readonly R _r;
+	    private readonly IVkArgs _vkArgs;
 
-	    public ThemeController(IDal dal, IdentityInfo identity, R r)
+	    public ThemeController(IDal dal, IdentityInfo identity, R r, IVkArgs vkArgs)
         {
 	        _dal = dal;
 	        _identity = identity;
 		    _r = r;
+		    _vkArgs = vkArgs;
         }
 
 	    public ActionResult Index(long themeId)

@@ -17,6 +17,7 @@ namespace Ktoto.Neprav.Utils
         {
             var page = _container.Resolve(type);
 			type.GetProperty("This").SetValue(page, controllerContext.HttpContext.Request.Url.AbsoluteUri);
+			type.GetProperty("VkArgs").SetValue(page, _container.Resolve<IVkArgs>());
             return page;
         }
     }

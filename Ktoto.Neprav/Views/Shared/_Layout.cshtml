@@ -1,5 +1,14 @@
 ﻿@using System
 @inherits Ktoto.Neprav.Utils.MyWebViewPage
+@{
+    VkArgs = DependencyResolver.Current.GetService<IVkArgs>();
+    var developers = new[] {"1484336", "5349661", "106613956"};
+    var userId = this.VkArgs.ViewerId;
+    if (!developers.Contains(userId))
+    {
+        throw new Exception("Приложение в разработке");
+    }
+}
 <!DOCTYPE html>
 <html lang="en">
     <head>

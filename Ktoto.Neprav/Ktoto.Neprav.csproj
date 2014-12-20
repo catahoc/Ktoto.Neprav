@@ -170,7 +170,11 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Scripts\api.js" />
+    <Compile Include="Utils\IVkArgs.cs" />
+    <Compile Include="Utils\IVkArgsSource.cs" />
     <Compile Include="Utils\PwdManager.cs" />
+    <Compile Include="Utils\VkArgs.cs" />
+    <Compile Include="Utils\VkArgsSource.cs" />
     <Compile Include="WebConfig.cs" />
     <Compile Include="Controllers\ThemeController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />

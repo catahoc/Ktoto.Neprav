@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ktoto.Neprav.DAL;
 using Ktoto.Neprav.Models;
+using Ktoto.Neprav.Utils;
 
 namespace Ktoto.Neprav.Controllers
 {
@@ -12,11 +13,13 @@ namespace Ktoto.Neprav.Controllers
     {
         private readonly IDal _dal;
 	    private readonly IdentityInfo _identity;
+	    private readonly IVkArgs _vkArgs;
 
-	    public ThemesController(IDal dal, IdentityInfo identity)
+	    public ThemesController(IDal dal, IdentityInfo identity, IVkArgs vkArgs)
         {
 	        _dal = dal;
 	        _identity = identity;
+		    _vkArgs = vkArgs;
         }
 
 	    public ActionResult Index()

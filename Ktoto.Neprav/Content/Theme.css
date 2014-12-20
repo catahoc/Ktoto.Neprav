@@ -34,8 +34,22 @@
     border-bottom: 1px solid black;
 }
 
-..avatar-link {
+.avatar-cell {
+    vertical-align: top;
+}
+.avatar, .avatar-link {
     float: left;
+    vertical-align: top;
     min-width: 100px;
     min-height: 100px;
+}
+
+a.name-link {
+    text-decoration: none;
+    color: blue;
+}
+
+a.name-link:hover {
+    text-decoration: underline;
+    background-color: transparent;
 }
