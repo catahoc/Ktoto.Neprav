@@ -27,17 +27,16 @@
                 </form>
                 @foreach (var comment in opinionModel.Comments)
                 {
-                    var url = "https://vk.com/id"+comment.Author.UserId;
                     <div class="comment">
                         <table class="load-vk-author author" data-user-id="@comment.Author.UserId">
                             <tr>
                                 <td rowspan="2" class="avatar-cell">
-                                    <a href="@url" class="avatar-link">
+                                    <a href="@comment.Author.GetPageUrl()" class="avatar-link">
                                         <img class="avatar" />
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@url" class="name-link"></a>
+                                    <a href="@comment.Author.GetPageUrl()" class="name-link"></a>
                                 </td>
                             </tr>
                             <tr>
@@ -47,7 +46,6 @@
                                     </span>
                                 </td>
                             </tr>
-                            
                         </table>
                     </div>
                 }

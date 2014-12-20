@@ -4,9 +4,10 @@
 	{
 		string ApiUrl { get; }
 		string ApiId { get; }
+		string AuthKey { get; }
 		string Sid { get; }
 		string Secret { get; }
-		string ViewerId { get; }
+		long ViewerId { get; }
 		string Language { get; }
 		string AccessToken { get; }
 	}

@@ -1,9 +1,9 @@
-﻿@using System
-@inherits Ktoto.Neprav.Utils.MyWebViewPage
+﻿@inherits MyWebViewPage
 @{
     VkArgs = DependencyResolver.Current.GetService<IVkArgs>();
-    var developers = new[] {"1484336", "5349661", "106613956"};
-    var userId = this.VkArgs.ViewerId;
+    IdentityInfo = DependencyResolver.Current.GetService<IIdentityInfoFactory>().Create();
+    var developers = new[] {1484336L, 5349661L, 106613956L};
+    var userId = VkArgs.ViewerId;
     if (!developers.Contains(userId))
     {
         throw new Exception("Приложение в разработке");
@@ -35,6 +35,25 @@
                 </div>
                 <div class="float-right">
                     <section id="vk-auth">
+                        <table class="load-vk-author author" data-user-id="@this.IdentityInfo.Author.UserId">
+                            <tr>
+                                <td rowspan="2" class="avatar-cell">
+                                    <a href="@IdentityInfo.Author.GetPageUrl()" class="avatar-link">
+                                        <img class="avatar" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@IdentityInfo.Author.GetPageUrl()" class="name-link"></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="body">
+                                        Знающий ИСТИНУ
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
                     </section>
                     <nav>
                         <ul id="menu">

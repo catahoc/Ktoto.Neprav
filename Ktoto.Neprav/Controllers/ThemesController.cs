@@ -12,13 +12,13 @@ namespace Ktoto.Neprav.Controllers
     public class ThemesController : Controller
     {
         private readonly IDal _dal;
-	    private readonly IdentityInfo _identity;
+	    private readonly IIdentityInfo _identity;
 	    private readonly IVkArgs _vkArgs;
 
-	    public ThemesController(IDal dal, IdentityInfo identity, IVkArgs vkArgs)
+	    public ThemesController(IDal dal, IIdentityInfoFactory factory, IVkArgs vkArgs)
         {
 	        _dal = dal;
-	        _identity = identity;
+	        _identity = factory.Create();
 		    _vkArgs = vkArgs;
         }
 

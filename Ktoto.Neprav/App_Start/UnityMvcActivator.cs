@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ktoto.Neprav;
 using Ktoto.Neprav.DAL;
+using Ktoto.Neprav.Models;
 using Ktoto.Neprav.Utils;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
@@ -68,6 +69,7 @@ namespace Ktoto.Neprav
 		    _container.RegisterType<IDal>(PerRequest(), new InjectionFactory(_ => _.Resolve<IDalFactory>().Create()));
 		    _container.RegisterType<IViewPageActivator, MyViewActivator>(PerRequest());
 			_container.RegisterType<IVkArgsSource, VkArgsSource>(PerRequest());
+			_container.RegisterType<IIdentityInfoFactory, IdentityInfoFactory>(PerRequest());
 		    _container.RegisterType<IVkArgs, VkArgs>(PerRequest(),
 			    new InjectionFactory(
 				    c => new VkArgs(c.Resolve<IVkArgsSource>(), HttpContext.Current.Request, HttpContext.Current.Response)));
