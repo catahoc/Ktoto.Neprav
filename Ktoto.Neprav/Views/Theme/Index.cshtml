@@ -5,7 +5,10 @@
     var postUrl = Url.Action("Comment", "Comments");
 }
 
-<h2>@Html.ActionLink((string)ViewBag.Title, "Index", new {themeId = Model.Theme.Id}) @Snippets.Liking(Model.Theme, This)</h2>
+<h2 class="theme-title">
+    @Html.ActionLink((string)ViewBag.Title, "Index", new {themeId = Model.Theme.Id}) 
+    @Snippets.Liking(IdentityInfo, Model.Theme, Model.Theme)
+</h2>
 
 <div id="theme">
     @Snippets.CommentForm(Model.Theme, Model.Theme, postUrl)
@@ -15,7 +18,7 @@
             <div>
                 @foreach (var comment in opinionModel.Comments)
                 {
-                    @Snippets.Comment(comment, Model.Theme, postUrl);
+                    @Snippets.Comment(IdentityInfo, comment, Model.Theme, postUrl);
                 }
             </div>
         </div>

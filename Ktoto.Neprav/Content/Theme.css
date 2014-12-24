@@ -44,11 +44,9 @@ a.name-link:hover {
 
 .comment-link-good {
     color: #040;
-    background-color: #6f6;
 }
 .comment-link-bad {
     color: #400;
-    background-color: #f66;
 }
 
 .comment-spans {
@@ -71,9 +69,9 @@ a.name-link:hover {
 }
 
 .Good {
-    background-color: #6f6;
+    background-color: #afa;
 }
 
 .Bad {
-    background-color: #f66;
+    background-color: #faa;
 }

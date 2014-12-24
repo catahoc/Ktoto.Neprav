@@ -16,7 +16,7 @@ namespace Ktoto.Neprav
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Themes", action = "Search", id = UrlParameter.Optional }
+                defaults: new { controller = "Themes", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

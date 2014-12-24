@@ -1,0 +1,10 @@
+﻿@model IQueryable<Theme>
+
+@{
+    ViewBag.Title = "10 самых горячих тем";
+}
+<h2>@ViewBag.Title</h2>
+@foreach (var theme in Model)
+{
+    @Snippets.ThemeItem(theme, Url.Action("Index", "Theme", new {themeId = theme.Id}))
+}

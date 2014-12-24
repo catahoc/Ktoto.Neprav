@@ -40,50 +40,13 @@
         </script>
     </head>
     <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">
-	                    <a href="/">
-		                    <img src="@Url.Content("~/Images/Logo.png")"/>
-	                    </a>
-                    </p>
-                </div>
-                <div class="float-right">
-                    <section id="vk-auth">
-                        <table class="load-vk-author author" data-user-id="@this.IdentityInfo.Author.UserId">
-                            <tr>
-                                <td rowspan="2" class="avatar-cell">
-                                    <a href="@IdentityInfo.Author.GetPageUrl()" class="avatar-link">
-                                        <img class="avatar" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="@IdentityInfo.Author.GetPageUrl()" class="name-link"></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="body">
-                                        Знающий ИСТИНУ
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Новая тема", "Create", "Theme")</li>
-                            <li>
-                                <form action="@Url.Action("Search", "Themes")">
-                                    <input type="text" name="text"/>
-                                    <input type="submit" value="Поиск"/>
-                                </form>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+        <header id="site-menu">
+            <span>@Html.ActionLink("На главную", "Index", "Themes")</span>
+            <span>@Html.ActionLink("Новая тема", "Create", "Theme")</span>
+            <form action="@Url.Action("Search", "Themes")" id="search-themes">
+                <input type="text" name="text"/>
+                <input type="submit" value="Поиск"/>
+            </form>
         </header>
 	    <div id="body">
 		    @RenderSection("featured", required: false)

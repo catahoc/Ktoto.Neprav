@@ -20,6 +20,13 @@ namespace Ktoto.Neprav.Controllers
 			_identity = identity;
         }
 
+	    public ActionResult Index()
+	    {
+		    var weekAgo = DateTime.Now - TimeSpan.FromDays(7);
+		    var themes = _dal.Query<Theme>().OrderByDescending(t => t.Comments.Count).Take(10);
+		    return View(themes);
+	    }
+
         public ActionResult Search(string text)
         {
             var found = _dal.Query<Theme>().Where(_ => _.Name.Contains(text)).ToList();

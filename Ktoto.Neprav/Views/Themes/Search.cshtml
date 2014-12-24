@@ -7,8 +7,5 @@
 <h2>@ViewBag.Title</h2>
 @foreach (var theme in Model.Found)
 {
-    @Html.ActionLink(theme.Name, "Index", "Theme", new
-        {
-            themeId = theme.Id
-        }, null)
+    @Snippets.ThemeItem(theme, Url.Action("Index", "Theme", new { themeId = theme.Id }))
 }

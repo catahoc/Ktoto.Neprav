@@ -1,31 +1,14 @@
-﻿a.like {
-	background-image: url(../Images/NotLike.png);
+﻿
+.liker {
+    text-decoration: none;
 }
 
-a.dislike {
-	background-image: url(../Images/Like.png);
+.liker:hover {
+    background-color: transparent;
 }
 
-a.like, a.dislike, img.like-just-see {
-	width: 20px;
-	height: 20px;
-	display: block;
-	margin: 0;
-	padding: 0;
-	float: left;
-}
-
-div.liking {
-	vertical-align: top;
-	float: right;
-	font-size: 10pt;
-}
-
-span.like-count {
-	float: right;
-	padding-left: 3px;
-}
-
-a.dislike:hover, a.like:hover {
-	background: url(../Images/Like-hl.png);
+.like-count {
+    font-size: 10pt;
+    padding: 0px;
+    font-weight: 400;
 }

@@ -1,34 +1,47 @@
 ﻿@using System.Security.Policy
 @using System.Web.Mvc
+@using System.Web.Mvc.Html
 @using Ktoto.Neprav
+@using Ktoto.Neprav.Models
 @using Ktoto.Neprav.Utils
 
-@helper Liking(Feed target, string backurl)
+@helper Liking(IIdentityInfo identity, Theme theme, Feed feed)
 {
 	var url = new UrlHelper(Context.Request.RequestContext);
-	<div class="liking">
-		@*@if (!identity.IsAuthorized)
-		{
-			<img class="like-just-see" src="@url.Content("~/Images/Like.png")"/>
-		}
-		else if (identity.Author.Colors.Select(op => op.Feed).Contains(target))
-		{
-			<a class="dislike" href="@url.Action("Dislike", "Likes", new {targetId = target.Id, backurl})"></a>
-		}
-		else
-		{
-			<a class="like" href="@url.Action("Like", "Likes", new {targetId = target.Id, backurl})"></a>
-		}*@
-		<span class="like-count">@target.Opinions.Count</span>
-	</div>
+    var author = identity.Author;
+	<span class="like-count">
+        <a class="liker" href="@url.Action("Click", "Opinion", new {feedId = feed.Id, themeId = theme.Id, color = OpinionColor.Good})">
+            @if (author.Opinions.Any(op => op.Color == OpinionColor.Good && op.Feed == feed))
+            {
+                <img src="/Images/like-active.png" />
+            }
+            else
+            {
+                <img src="/Images/like-inactive.png" />
+            }
+        </a>
+	    @feed.Opinions.Count(o => o.Color == OpinionColor.Good)
+
+        <a class="liker" href="@url.Action("Click", "Opinion", new { feedId = feed.Id, themeId = theme.Id, color = OpinionColor.Bad })">
+            @if (author.Opinions.Any(op => op.Color == OpinionColor.Bad && op.Feed == feed))
+            {
+                <img src="/Images/hate-active.png" />
+            }
+            else
+            {
+                <img src="/Images/hate-inactive.png" />
+            }
+        </a>
+        @feed.Opinions.Count(o => o.Color == OpinionColor.Bad)
+	</span>
 }
 
 @helper CommentForm(Feed target, Theme theme, string postUrl)
 {
     <div >
         <div class="comment-spans">
-            <span class="comment-link comment-link-good" data-color="@OpinionColor.Good">Позитивно комментировать</span>
-            <span class="comment-link comment-link-bad" data-color="@OpinionColor.Bad"> Негативно комментировать</span>
+            <span class="comment-link comment-link-good @OpinionColor.Good" data-color="@OpinionColor.Good">Позитивно комментировать</span>
+            <span class="comment-link comment-link-bad @OpinionColor.Bad" data-color="@OpinionColor.Bad"> Негативно комментировать</span>
         </div>
         <form action="@postUrl" class="comment-body" style="display: none">
             <input type="hidden" class="color-value" name="Color" value="" />
@@ -40,7 +53,7 @@
     </div>
 }
 
-@helper Comment(Comment comment, Theme theme, string postUrl)
+@helper Comment(IIdentityInfo identity, Comment comment, Theme theme, string postUrl)
 {
     <div class="comment @comment.Color">
         <table class="load-vk-author author" data-user-id="@comment.Author.UserId">
@@ -58,6 +71,7 @@
                 <td>
                     <span class="body">
                         @comment.Text
+                        @Snippets.Liking(identity, theme, comment)
                     </span>
                 </td>
             </tr>
@@ -67,11 +81,19 @@
                         @CommentForm(comment, theme, postUrl)
                         @foreach (var subcomment in comment.Comments)
                         {
-                            @Comment(subcomment, theme, postUrl);
+                            @Comment(identity, subcomment, theme, postUrl);
                         }
                     </div>
                 </td>
             </tr>
         </table>
     </div>
+}
+
+@helper ThemeItem(Theme theme, string themeUrl)
+{
+    <div class="theme-item">
+        <a href="@themeUrl">@theme.Name</a>
+    </div>
+
 }

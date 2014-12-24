@@ -20,7 +20,7 @@ namespace Ktoto.Neprav.Controllers
 			if (_service.IsRequestFromVk(Request))
 			{
 				_service.SaveVkArgsAsCookies(Request, Response);
-				return RedirectToAction("Search", "Themes");
+				return Redirect("/");
 			}
 			else
 			{

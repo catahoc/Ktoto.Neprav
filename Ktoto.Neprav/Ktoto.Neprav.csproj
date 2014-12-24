@@ -133,11 +133,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Content Include="Content\Common.css" />
     <Content Include="Content\Like.css" />
     <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\LikesController.cs" />
+    <Compile Include="Controllers\OpinionController.cs" />
     <Compile Include="Controllers\VkController.cs" />
     <Compile Include="Models\IdentityInfo.cs" />
+    <Content Include="Content\Theme.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -171,6 +173,10 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Images\hate-active.png" />
+    <Content Include="Images\hate-inactive.png" />
+    <Content Include="Images\like-active.png" />
+    <Content Include="Images\like-inactive.png" />
     <Content Include="Scripts\api.js" />
     <Compile Include="Models\IdentityInfoFactory.cs" />
     <Compile Include="Models\IIdentityInfo.cs" />
@@ -199,16 +205,9 @@
     <Compile Include="Utils\MyWebViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\Like-hl.png" />
-    <Content Include="Images\Like.pdn" />
-    <Content Include="Images\Logo.pdn" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Images\Like.png" />
-    <Content Include="Images\Logo.png" />
-    <Content Include="Images\NotLike.png" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -233,19 +232,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -254,6 +240,7 @@
     <Content Include="Views\Themes\Search.cshtml" />
     <Content Include="App_Code\Snippets.cshtml" />
     <Content Include="Views\Theme\Create.cshtml" />
+    <Content Include="Views\Themes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />
