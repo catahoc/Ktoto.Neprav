@@ -134,6 +134,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Content Include="Content\Like.css" />
+    <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\LikesController.cs" />
+    <Compile Include="Controllers\VkController.cs" />
     <Compile Include="Models\IdentityInfo.cs" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -169,12 +172,15 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Scripts\api.js" />
+    <Compile Include="Models\IdentityInfoFactory.cs" />
+    <Compile Include="Models\IIdentityInfo.cs" />
+    <Compile Include="Models\ThemeOpinionViewModel.cs" />
     <Compile Include="Utils\AuthorExtensions.cs" />
     <Compile Include="Utils\IVkArgs.cs" />
-    <Compile Include="Utils\IVkArgsSource.cs" />
+    <Compile Include="Utils\IVkArgsService.cs" />
     <Compile Include="Utils\PwdManager.cs" />
     <Compile Include="Utils\VkArgs.cs" />
-    <Compile Include="Utils\VkArgsSource.cs" />
+    <Compile Include="Utils\VkArgsService.cs" />
     <Compile Include="WebConfig.cs" />
     <Compile Include="Controllers\ThemeController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
@@ -183,7 +189,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommentTheme.cs" />
+    <Compile Include="Models\CommentFeedModel.cs" />
     <Compile Include="Models\FoundThemes.cs" />
     <Compile Include="Models\ThemeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -245,10 +251,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Theme\Index.cshtml" />
-    <Content Include="Views\Themes\Index.cshtml" />
     <Content Include="Views\Themes\Search.cshtml" />
     <Content Include="App_Code\Snippets.cshtml" />
-    <Content Include="Views\Themes\Create.cshtml" />
+    <Content Include="Views\Theme\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />

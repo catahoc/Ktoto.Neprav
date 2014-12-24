@@ -10,9 +10,9 @@ namespace Ktoto.Neprav.Utils
 	{
 		private const string SECRET = "0NFgIYmnCuTxz7Avoww0";
 
-		public VkArgs(IVkArgsSource source, HttpRequest request, HttpResponse response)
+		public VkArgs(IVkArgsService service, HttpRequest request)
 		{
-			var args = source.GetVkArgs(request, response);
+			var args = service.GetVkArgs(request);
 			ApiUrl = args.GetOrNull("vk.api_url");
 			ViewerId = long.Parse(args.GetOrNull("vk.viewer_id"));
 			ApiId = args.GetOrNull("vk.api_id");

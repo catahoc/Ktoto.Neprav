@@ -63,16 +63,19 @@ namespace Ktoto.Neprav
 		    }
 
 		    // global
-		    _container.RegisterInstance<IDalFactory>(factory);
+		    _container.RegisterInstance(factory);
 
 		    // per request
 		    _container.RegisterType<IDal>(PerRequest(), new InjectionFactory(_ => _.Resolve<IDalFactory>().Create()));
+		    _container.RegisterType<HttpRequestBase>(PerRequest(), new InjectionFactory(_ => HttpContext.Current.Request));
+		    _container.RegisterType<HttpRequest>(PerRequest(), new InjectionFactory(_ => HttpContext.Current.Request));
+		    _container.RegisterType<HttpResponseBase>(PerRequest(), new InjectionFactory(_ => HttpContext.Current.Response));
+		    _container.RegisterType<HttpResponse>(PerRequest(), new InjectionFactory(_ => HttpContext.Current.Response));
 		    _container.RegisterType<IViewPageActivator, MyViewActivator>(PerRequest());
-			_container.RegisterType<IVkArgsSource, VkArgsSource>(PerRequest());
-			_container.RegisterType<IIdentityInfoFactory, IdentityInfoFactory>(PerRequest());
-		    _container.RegisterType<IVkArgs, VkArgs>(PerRequest(),
-			    new InjectionFactory(
-				    c => new VkArgs(c.Resolve<IVkArgsSource>(), HttpContext.Current.Request, HttpContext.Current.Response)));
+			_container.RegisterType<IVkArgsService, VkArgsService>(PerRequest());
+		    _container.RegisterType<IIdentityInfo, IdentityInfo>(PerRequest(),
+			    new InjectionFactory(c => c.Resolve<IdentityInfoFactory>().Create()));
+		    _container.RegisterType<IVkArgs, VkArgs>(PerRequest());
 	    }
 
         private static IDalFactory CreateDalFactory(string cs)

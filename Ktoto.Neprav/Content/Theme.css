@@ -9,18 +9,6 @@
     min-height: 1200px;
 }
 
-.opinion div {
-    padding: 10px;
-}
-
-.opinion:nth-child(1) {
-    background-color: #dfa;
-}
-
-.opinion:nth-child(2) {
-    background-color: #fac;
-}
-
 .comment .author {
     font-size: 12pt;
     display: block;
@@ -28,10 +16,6 @@
 
 .comment .body {
     padding-left: 25px;
-}
-
-.comment {
-    border-bottom: 1px solid black;
 }
 
 .avatar-cell {
@@ -52,4 +36,44 @@ a.name-link {
 a.name-link:hover {
     text-decoration: underline;
     background-color: transparent;
+}
+.comment-editor {
+    width: 75%;
+    height: 30px;
+}
+
+.comment-link-good {
+    color: #040;
+    background-color: #6f6;
+}
+.comment-link-bad {
+    color: #400;
+    background-color: #f66;
+}
+
+.comment-spans {
+    margin: 0;
+    padding: 0;
+}
+
+.comment-link {
+    cursor: pointer;
+    font-size: 8pt;
+}
+
+.comment-link:hover {
+    text-decoration: underline;
+}
+
+.subcomments {
+    border-left: 5px solid #444;
+    padding-left: 50px;
+}
+
+.Good {
+    background-color: #6f6;
+}
+
+.Bad {
+    background-color: #f66;
 }

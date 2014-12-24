@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Ktoto.Neprav.Utils
 {
-	public class VkArgsSource : IVkArgsSource
+	public class VkArgsService : IVkArgsService
 	{
 		private readonly string markerVar = "user_id";
 		private readonly string markerPrefix = "vk.";
@@ -29,33 +29,16 @@ namespace Ktoto.Neprav.Utils
 			"lc_name" //— служебные параметры."
 		};
 
-		public Dictionary<string, string> GetVkArgs(HttpRequest request, HttpResponse response)
+
+		public Dictionary<string, string> GetVkArgs(HttpRequest request)
 		{
-			if (HasVkArgs(request))
+			if (HasVkCookies(request.Cookies))
 			{
-				SaveToCookie(request, response);
-				return GetFromCookies(response.Cookies);
+				return GetFromCookies(request.Cookies);
 			}
 			else
 			{
-				if (HasVkCookies(request.Cookies))
-				{
-					return GetFromCookies(request.Cookies);
-				}
-				else
-				{
-					throw new InvalidOperationException("Vk cookies missing");
-				}
-			}
-		}
-
-		private void SaveToCookie(HttpRequest request, HttpResponse response)
-		{
-			var query = request.QueryString;
-			var args = query.AllKeys.SelectMany(query.GetValues, (k, v) => new { key = k, value = v }).ToDictionary(_ => _.key, _ => _.value);
-			foreach (var arg in args)
-			{
-				response.AppendCookie(new HttpCookie(markerPrefix + arg.Key, arg.Value));
+				throw new InvalidOperationException("Vk cookies missing");
 			}
 		}
 
@@ -66,12 +49,22 @@ namespace Ktoto.Neprav.Utils
 				.ToDictionary(_ => _.Name, _ => _.Value);
 		}
 
-		private bool HasVkCookies(HttpCookieCollection cookies)
+		public bool HasVkCookies(HttpCookieCollection cookies)
 		{
 			return cookies.AllKeys.ToDictionary(_ => _, _ => cookies[_]).Values.Any(cook => cook.Name.StartsWith(markerPrefix));
 		}
 
-		private bool HasVkArgs(HttpRequest request)
+		public void SaveVkArgsAsCookies(HttpRequestBase request, HttpResponseBase response)
+		{
+			var query = request.QueryString;
+			var args = query.AllKeys.SelectMany(query.GetValues, (k, v) => new { key = k, value = v }).ToDictionary(_ => _.key, _ => _.value);
+			foreach (var arg in args)
+			{
+				response.AppendCookie(new HttpCookie(markerPrefix + arg.Key, arg.Value));
+			}
+		}
+
+		public bool IsRequestFromVk(HttpRequestBase request)
 		{
 			var nonProvidedVkArgs = _varsNames.Except(request.QueryString.AllKeys);
 			return !nonProvidedVkArgs.Any();

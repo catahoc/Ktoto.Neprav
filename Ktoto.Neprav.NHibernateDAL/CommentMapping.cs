@@ -8,7 +8,7 @@ namespace Ktoto.Neprav
         {
 			KeyColumn("ID");
 
-            Map(_ => _.Opinion);
+            Map(_ => _.Color);
             Map(_ => _.Text);
 
             References(_ => _.Feed);

@@ -1,53 +1,21 @@
-﻿@using Ktoto.Neprav.Utils
-@model ThemeViewModel
+﻿@model ThemeViewModel
 
 @{
     ViewBag.Title = Model.Theme.Name;
+    var postUrl = Url.Action("Comment", "Comments");
 }
 
-<h2>@ViewBag.Title @Snippets.Liking(Model.Theme, This)</h2>
-
-<script type="text/javascript">
-    $(function () {
-        var authorsToLoad = $('.load-vk-author');
-        loadUsersIntoDivs(authorsToLoad);
-    });
-</script>
+<h2>@Html.ActionLink((string)ViewBag.Title, "Index", new {themeId = Model.Theme.Id}) @Snippets.Liking(Model.Theme, This)</h2>
 
 <div id="theme">
+    @Snippets.CommentForm(Model.Theme, Model.Theme, postUrl)
     @foreach (var opinionModel in Model.ThemeOpinionViewModels)
     {
-        <div class="opinion @opinionModel.Opinion">
+        <div class="opinion @opinionModel.Color">
             <div>
-                <form action="@Url.Action("Comment")">
-                    <input type="hidden" name="OpinionColor" value="@opinionModel.Opinion"/>
-                    <input type="hidden" name="ThemeAuthorId" value="@Model.Theme.Id"/>
-                    <textarea name="Text" class="comment-editor"></textarea>
-                    <input type="submit" value="Оставить комментарий…"/>
-                </form>
                 @foreach (var comment in opinionModel.Comments)
                 {
-                    <div class="comment">
-                        <table class="load-vk-author author" data-user-id="@comment.Author.UserId">
-                            <tr>
-                                <td rowspan="2" class="avatar-cell">
-                                    <a href="@comment.Author.GetPageUrl()" class="avatar-link">
-                                        <img class="avatar" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="@comment.Author.GetPageUrl()" class="name-link"></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="body">
-                                        @comment.Text
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    @Snippets.Comment(comment, Model.Theme, postUrl);
                 }
             </div>
         </div>

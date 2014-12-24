@@ -8,7 +8,6 @@ namespace Ktoto.Neprav.DAL
         public static void FillDal(IDal dal)
         {
 
-	        var R = new R(dal);
             var theme = new Theme
             {
                 Name = "Грязные гомосеки",
@@ -26,7 +25,7 @@ namespace Ktoto.Neprav.DAL
 
             var comment1 = new Comment()
             {
-                Opinion = OpinionColor.Good,
+                Color = OpinionColor.Good,
                 Text =
                     "обажаю гомосексуализм. первый раз попробовал в 5 лет и теперь втянулся, ваааще супер, мальчики такие клевые",
             };
@@ -40,7 +39,7 @@ namespace Ktoto.Neprav.DAL
             };
             var comment2 = new Comment()
             {
-				Opinion = OpinionColor.Bad,
+				Color = OpinionColor.Bad,
                 Text =
                     "Фу грязные педики. Мне страшно за детей. Меня тянет блевать от них. Я так-то не против этих ебаных пидоров хуесосов, но только если они тихо сидят дома и боятся меня. Если я увижу такого рядом с ребенком я бля его в жопу выебу.",
             };
@@ -54,7 +53,7 @@ namespace Ktoto.Neprav.DAL
             };
             var comment3 = new Comment()
             {
-				Opinion = OpinionColor.Good,
+				Color = OpinionColor.Good,
                 Text =
                     "У меня друг гей очень хороший мальчик. А плохие гомосеки парады устраивают. Вообще тема дял долгого разговора. Мне нравятся брутальные мальчики пишите вирт vasya_ogarkov@gmail.com.",
             };

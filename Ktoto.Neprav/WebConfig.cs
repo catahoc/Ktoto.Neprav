@@ -4,7 +4,7 @@
 	{
 		static WebConfig()
 		{
-			ResetSchemata = true;
+			ResetSchemata = false;
 		}
 
 		public static bool ResetSchemata { get; private set; } 

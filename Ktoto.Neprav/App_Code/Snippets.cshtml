@@ -1,5 +1,7 @@
-﻿@using System.Web.Mvc
+﻿@using System.Security.Policy
+@using System.Web.Mvc
 @using Ktoto.Neprav
+@using Ktoto.Neprav.Utils
 
 @helper Liking(Feed target, string backurl)
 {
@@ -9,7 +11,7 @@
 		{
 			<img class="like-just-see" src="@url.Content("~/Images/Like.png")"/>
 		}
-		else if (identity.Author.Opinions.Select(op => op.Feed).Contains(target))
+		else if (identity.Author.Colors.Select(op => op.Feed).Contains(target))
 		{
 			<a class="dislike" href="@url.Action("Dislike", "Likes", new {targetId = target.Id, backurl})"></a>
 		}
@@ -19,4 +21,57 @@
 		}*@
 		<span class="like-count">@target.Opinions.Count</span>
 	</div>
+}
+
+@helper CommentForm(Feed target, Theme theme, string postUrl)
+{
+    <div >
+        <div class="comment-spans">
+            <span class="comment-link comment-link-good" data-color="@OpinionColor.Good">Позитивно комментировать</span>
+            <span class="comment-link comment-link-bad" data-color="@OpinionColor.Bad"> Негативно комментировать</span>
+        </div>
+        <form action="@postUrl" class="comment-body" style="display: none">
+            <input type="hidden" class="color-value" name="Color" value="" />
+            <input type="hidden" name="ThemeId" value="@theme.Id" />
+            <input type="hidden" name="FeedId" value="@target.Id" />
+            <textarea name="Text" class="comment-editor"></textarea>
+            <input type="submit" value="POST" />
+        </form>
+    </div>
+}
+
+@helper Comment(Comment comment, Theme theme, string postUrl)
+{
+    <div class="comment @comment.Color">
+        <table class="load-vk-author author" data-user-id="@comment.Author.UserId">
+            <tr>
+                <td rowspan="2" class="avatar-cell">
+                    <a href="@comment.Author.GetPageUrl()" class="avatar-link">
+                        <img class="avatar" />
+                    </a>
+                </td>
+                <td>
+                    <a href="@comment.Author.GetPageUrl()" class="name-link"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="body">
+                        @comment.Text
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="subcomments">
+                        @CommentForm(comment, theme, postUrl)
+                        @foreach (var subcomment in comment.Comments)
+                        {
+                            @Comment(subcomment, theme, postUrl);
+                        }
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ktoto.Neprav.DAL;
 using Ktoto.Neprav.Models;
@@ -13,15 +11,11 @@ namespace Ktoto.Neprav.Controllers
     {
         private readonly IDal _dal;
 	    private readonly IIdentityInfo _identity;
-	    private readonly R _r;
-	    private readonly IVkArgs _vkArgs;
 
-	    public ThemeController(IDal dal, IIdentityInfoFactory factory, R r, IVkArgs vkArgs)
+	    public ThemeController(IDal dal, IIdentityInfo identity)
         {
 	        _dal = dal;
-	        _identity = factory.Create();
-		    _r = r;
-		    _vkArgs = vkArgs;
+			_identity = identity;
         }
 
 	    public ActionResult Index(long themeId)
@@ -32,24 +26,27 @@ namespace Ktoto.Neprav.Controllers
                     EnumHelpers.Enumerate<OpinionColor>()
                                .Select(
                                    _ =>
-                                   new ThemeOpinionViewModel(_, theme.Comments.Where(c => c.Opinion == _).ToArray()))
+                                   new ThemeOpinionViewModel(_, theme.Comments.Where(c => c.Color == _).ToArray()))
                                .ToArray(),
                     theme);
             return View(model);
         }
 
-        public ActionResult Comment(CommentTheme commentModel)
-        {
-            var theme = _dal.Get<Theme>(commentModel.ThemeId);
-            var comment = new Comment
-                {
-                    Text = commentModel.Text,
-                    Opinion = commentModel.Opinion
-                };
-			_r.Commented(_identity.Author, theme, comment);
-            _dal.Attach(comment);
+		public ActionResult Create()
+		{
+			return View();
+		}
 
-			return RedirectToAction("Index", new { themeId = theme.Id });
-        }
+		public ActionResult AcceptCreate(string name)
+		{
+			var theme = new Theme
+			{
+				Name = name,
+				Created = DateTimeOffset.Now,
+				Author = _identity.Author
+			};
+			_dal.Attach(theme);
+			return RedirectToAction("Index", "Theme", new { themeId = theme.Id });
+		}
     }
 }
