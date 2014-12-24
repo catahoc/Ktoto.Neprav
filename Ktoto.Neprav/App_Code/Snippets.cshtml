@@ -11,7 +11,7 @@
     var author = identity.Author;
 	<span class="like-count">
         <a class="liker" href="@url.Action("Click", "Opinion", new {feedId = feed.Id, themeId = theme.Id, color = OpinionColor.Good})">
-            @if (author.Opinions.Any(op => op.Color == OpinionColor.Good && op.Feed == feed))
+            @if (feed.Opinions.Any(op => op.Color == OpinionColor.Good && op.Author == author))
             {
                 <img src="/Images/like-active.png" />
             }
@@ -23,7 +23,7 @@
 	    @feed.Opinions.Count(o => o.Color == OpinionColor.Good)
 
         <a class="liker" href="@url.Action("Click", "Opinion", new { feedId = feed.Id, themeId = theme.Id, color = OpinionColor.Bad })">
-            @if (author.Opinions.Any(op => op.Color == OpinionColor.Bad && op.Feed == feed))
+            @if (feed.Opinions.Any(op => op.Color == OpinionColor.Bad && op.Author == author))
             {
                 <img src="/Images/hate-active.png" />
             }
