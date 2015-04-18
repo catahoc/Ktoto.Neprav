@@ -1,6 +1,4 @@
-﻿@using System.Security.Policy
-@using System.Web.Mvc
-@using System.Web.Mvc.Html
+﻿@using System.Web.Mvc
 @using Ktoto.Neprav
 @using Ktoto.Neprav.Models
 @using Ktoto.Neprav.Utils
@@ -97,3 +95,14 @@
     </div>
 
 }
+
+@helper ThemeItemSelected(Theme theme, string themeUrl)
+{
+    <div class="theme-item-selected">
+        <a href="@themeUrl">@theme.Name</a>
+    </div>
+
+}
+
+
+

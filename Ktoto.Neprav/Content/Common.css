@@ -1,4 +1,11 @@
-﻿.theme-item {
+﻿/*.theme-item {
     padding: 5px 20px 5px 20px;
     font-size: 12pt;
+}*/
+
+.theme-item {
+    min-width: 584px;
+    min-height: 64px;
+    font-size: 12pt;
+    border: 1px solid black;
 }

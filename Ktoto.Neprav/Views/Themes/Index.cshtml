@@ -2,9 +2,22 @@
 
 @{
     ViewBag.Title = "10 самых горячих тем";
+    var half = Model.Count()/2;
+    var first = Model.Take(half);
+    var last = Model.Skip(half).ToArray();
+    var selected = last.FirstOrDefault();
+    var second = last.Skip(1);
 }
 <h2>@ViewBag.Title</h2>
-@foreach (var theme in Model)
+@foreach (var theme in first)
 {
     @Snippets.ThemeItem(theme, Url.Action("Index", "Theme", new {themeId = theme.Id}))
+}
+    @if (selected != null)
+    {
+        @Snippets.ThemeItemSelected(selected, Url.Action("Index", "Theme", new { themeId = selected.Id }))
+    }
+@foreach (var theme in second)
+{
+    @Snippets.ThemeItem(theme, Url.Action("Index", "Theme", new { themeId = theme.Id }))
 }
